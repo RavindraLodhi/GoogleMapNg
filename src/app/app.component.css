@@ -1,0 +1,92 @@
+agm-map {
+ height: 280px;
+  margin: 0px;
+  padding: 0px
+}
+
+#buttonAdd {
+  height: 24px;
+  width: 71px;
+  margin-left: 20px;
+  font-size: 9px;
+  margin-bottom: 5px;
+  padding-top: 4px;
+}
+.container-fluid{
+  background: black;
+  height: 550px;
+}
+#headButton{
+  background: black;
+  text-align: center;
+  padding-bottom: -32px;
+  margin-top: 5px;
+  height: 30px;
+  width: 96px;
+  padding-bottom: 6px;
+  padding-top: 2px;
+}
+.manu{
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+}
+.headManu{
+  padding-left: 30px;
+  padding-top: 9px;
+}
+.mapContaner{
+  background: white;
+  margin-top: 9px;
+  margin-left: 114px;
+  height: 530px;
+}
+label{
+  width: 100%;
+  margin-bottom: 0px;
+  margin-top: 26px;
+  border-style: groove;
+  height: 30px;
+  padding-top: 6px;
+    padding-left: 28px;
+    font-size: 12px;
+}
+.table-bordered{
+  font-size: 11px;
+  text-align: center
+}
+input{
+  height: 24px;
+  border-radius: 5px;
+  background:  #ddd;
+  border-style: groove;
+  margin-top: 27px;
+  width: 209px;
+  font-size: 11px;
+  padding-left: 19px;
+}
+.map{
+  margin-top: 12px;
+  border-style: groove;
+}
+.table td, .table th {
+  /* padding: 0.4rem; */
+  padding: 0px;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+#addDelete{
+  width: 100%;
+}
+.marker:hover{
+  color: aqua
+}
+
+.h-marker{
+  color: red;
+  background-color: black
+}
+.error{
+  color: red;
+}

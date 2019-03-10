@@ -1,20 +1,102 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+      <button
+        id="headButton"
+        type="button"
+        class="btn btn-dark"
+        (click)="btnClick()"
+      >
+        LOGO
+      </button>
+    </div>
+    <div class="col-md-1 headManu">
+      <div class="manu"></div>
+      <div class="manu"></div>
+      <div class="manu"></div>
+    </div>
+    <div class="col-md-10"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-11 mapContaner">
+      <div class="container">
+        <div class="serchMerker">
+          <div class="error">{{errorMessage}}</div>
+          <input type="text" #markerName [(ngModel)]="updateName" placeholder="Marker name input field"
+          />
+          <button
+            id="buttonAdd"
+            type="button"
+            class="btn btn-dark"
+            (click)="addMarker(markerName.value)"
+          >
+            <i class="fa fa-plus"></i> {{action}}
+          </button>
+        </div>
+        <div class="map">
+          <agm-map #gm
+            [latitude]="lat"
+            [longitude]="lng"
+            (mapClick)="onChoseLocation($event)" 
+          >
+          <ng-container *ngFor="let loc of locations;let i=index" class="h-marker">
+           <agm-marker  [latitude]="loc.latitude" [longitude]="loc.longitude"
+              [markerDraggable]="loc.draggable" (mouseOver)="onMouseOver(infoWindow,gm,loc)" 
+              (mouseOut)="onMouseOut(infoWindow,gm)" (dragEnd)="markerEnd(i,$event)" [animation]="loc.class">
+   <!--[iconUrl]="logo"-->
+            <agm-info-window [disableAutoPan]="false" #infoWindow>
+             
+                <div>
+                    <a class="btn btn-attention pull-right">{{showLocation.name}}</a>
+                </div>
+    
+                <div>
+                   <span>Lat= {{showLocation.latitude |number : '1.2-5'}}</span> <br>
+                   <span>Lng= {{showLocation.longitude| number : '1.2-5'}}</span> 
+                </div>
+               
+            </agm-info-window>
+          
+          </agm-marker>
 
+            
+        </ng-container>
+
+          </agm-map>
+          
+        </div>
+        <div class="tableDat">
+          <label>TITLE | LIST LOCATIONS</label>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>SI.No</th>
+                <th>Name of thr marker</th>
+                <th>Latitude</th>
+                <th>longitude</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let loc of locations; let i = index">
+                <td>1</td>
+                <td>{{ loc.name }}</td>
+                <td>{{ loc.latitude }}</td>
+                <td>{{ loc.longitude }}</td>
+                <td>
+                  <table id="addDelete">
+                    <tr>
+                      <td>
+                        <a href="#"><span (click)="onEdit(i)">Edit</span></a>
+                      </td>
+                      <a href="#"><span (click)="onDelete(i)">Delete</span></a>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
