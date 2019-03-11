@@ -21,12 +21,15 @@ export class AppComponent {
   constructor() {}
 
   ngOnInit() {
-    this.locations=[{latitude:12.916412, longitude: 77.611149,draggable:false, name: "Prov India" } ];
+    console.log("xjaidjiasdj");
+    
+    this.locations=[{latitude:12.916412, longitude: 77.611149,draggable:false, name: "Prov India",logo:"http://maps.google.com/mapfiles/ms/icons/red-dot.png" } ];
     this.showLocation=this.locations[0];
   }
 
   onChoseLocation(event) {
-    this.selectedLocation={latitude: event.coords.lat,longitude: event.coords.lng,draggable:false,class:null,name: "New Location" };
+    this.selectedLocation={latitude: event.coords.lat,longitude: event.coords.lng,draggable:false,class:null,name:
+       "New Location",logo:"http://maps.google.com/mapfiles/ms/icons/red-dot.png" };
   }
 
   addMarker(marker){
@@ -35,8 +38,9 @@ export class AppComponent {
           this.locations.map(item=>{
             item.draggable=false;
             item.class=null; })
-          this.locations[this.currentIndex].name=this.updateName;
+          this.locations[this.currentIndex].name=this.updateName;http://maps.google.com/mapfiles/ms/icons/red-dot.png
           this.action="Add";
+          this.locations[this.currentIndex].logo="http://maps.google.com/mapfiles/ms/icons/red-dot.png"
     }
    else if(this.selectedLocation!=undefined){
           this.selectedLocation.name=marker;
@@ -51,7 +55,7 @@ export class AppComponent {
   }
 
   onEdit(index){
-
+    this.locations[index].logo="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
     this.locations.map(item=>{
     item.draggable=false;
     item.class=null;
@@ -65,8 +69,9 @@ export class AppComponent {
  
   }
 
-  onMouseOver(infoWindow, gm,loc) {
-
+  onMouseOver(infoWindow, gm,loc,index) {
+    this.locations[index].logo="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    loc.class="BOUNCE";
     this.showLocation=loc;
     if (gm.lastOpen && gm.lastOpen.isOpen) {
       gm.lastOpen.close();
@@ -75,7 +80,9 @@ export class AppComponent {
     infoWindow.open();
 }
 
-  onMouseOut(infoWindow, gm) {
+  onMouseOut(infoWindow, gm,loc,index) {
+      this.locations[index].logo="http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+      loc.class=null;
       gm.lastOpen.close();
       infoWindow.close();
   }
@@ -83,6 +90,10 @@ export class AppComponent {
   markerEnd(index,event){
     this.locations[index].latitude=event.coords.lat;
     this.locations[index].longitude=event.coords.lng;
+  }
+
+  btnClick(){
+
   }
 }
 
@@ -93,4 +104,5 @@ interface LocationI{
   draggable?:boolean;
   name?:string;
   class?:string;
+  logo ?:string;
 }

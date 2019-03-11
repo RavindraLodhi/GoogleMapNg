@@ -33,16 +33,14 @@
           </button>
         </div>
         <div class="map">
-          <agm-map #gm
-            [latitude]="lat"
-            [longitude]="lng"
-            (mapClick)="onChoseLocation($event)" 
-          >
+          <agm-map #gm [latitude]="lat"[longitude]="lng" (mapClick)="onChoseLocation($event)">
+
           <ng-container *ngFor="let loc of locations;let i=index" class="h-marker">
+
            <agm-marker  [latitude]="loc.latitude" [longitude]="loc.longitude"
-              [markerDraggable]="loc.draggable" (mouseOver)="onMouseOver(infoWindow,gm,loc)" 
-              (mouseOut)="onMouseOut(infoWindow,gm)" (dragEnd)="markerEnd(i,$event)" [animation]="loc.class">
-   <!--[iconUrl]="logo"-->
+              [markerDraggable]="loc.draggable" (mouseOver)="onMouseOver(infoWindow,gm,loc,i)" 
+              (mouseOut)="onMouseOut(infoWindow,gm,loc,i)" (dragEnd)="markerEnd(i,$event)" [animation]="loc.class" [iconUrl]="loc.logo">
+            <!--[iconUrl]="logo"-->
             <agm-info-window [disableAutoPan]="false" #infoWindow>
              
                 <div>
